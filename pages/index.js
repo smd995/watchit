@@ -2,6 +2,8 @@ import MovieList from "@/components/MovieList";
 import SearchForm from "@/components/SearchForm";
 import { useEffect, useState } from "react";
 import axios from "@/lib/axios";
+import Header from "@/components/Header";
+import Container from "@/components/Container";
 
 export default function Home() {
   const [movies, setMovies] = useState([]);
@@ -18,9 +20,11 @@ export default function Home() {
 
   return (
     <>
-      <h1>watchit</h1>
-      <SearchForm />
-      <MovieList movies={movies} />
+      <Header />
+      <Container page>
+        <SearchForm />
+        <MovieList movies={movies} />
+      </Container>
     </>
   );
 }

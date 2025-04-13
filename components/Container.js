@@ -4,5 +4,5 @@ export default function Container({ className = "", page, ...props }) {
   const classNames = `${styles.container} ${
     page ? styles.page : ""
   } ${className}`;
-  return <div className={classNames}>{...props}</div>;
+  return <div className={classNames} {...props} />;
 }
