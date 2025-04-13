@@ -1,22 +1,26 @@
+import MovieList from "@/components/MovieList";
 import SearchForm from "@/components/SearchForm";
-import Link from "next/link";
+import { useEffect, useState } from "react";
+import axios from "@/lib/axios";
 
 export default function Home() {
+  const [movies, setMovies] = useState([]);
+
+  async function getMovies() {
+    const res = await axios.get(`/movies`);
+    const nextMovies = res.data.results;
+    setMovies(nextMovies);
+  }
+
+  useEffect(() => {
+    getMovies();
+  }, []);
+
   return (
     <>
       <h1>watchit</h1>
       <SearchForm />
-      <ul>
-        <li>
-          <Link href="/movies/1">1번 영화</Link>
-        </li>
-        <li>
-          <Link href="/movies/2">2번 영화</Link>
-        </li>
-        <li>
-          <Link href="/movies/3">3번 영화</Link>
-        </li>
-      </ul>
+      <MovieList movies={movies} />
     </>
   );
 }
