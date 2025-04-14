@@ -3,6 +3,9 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import MovieList from "@/components/MovieList";
 import axios from "@/lib/axios";
+import Header from "@/components/Header";
+import Container from "@/components/Container";
+import styles from "@/styles/Search.module.css";
 
 export default function Search() {
   const [movies, setMovies] = useState([]);
@@ -21,10 +24,14 @@ export default function Search() {
 
   return (
     <div>
-      <h1>watchit</h1>
-      <SearchForm initialValue={q} />
-      <h2>{q} 검색 결과</h2>
-      <MovieList movies={movies} />
+      <Header />
+      <Container page>
+        <SearchForm initialValue={q} />
+        <h2 className={styles.title}>
+          <span className={styles.keyword}>{q}</span> 검색 결과
+        </h2>
+        <MovieList movies={movies} />
+      </Container>
     </div>
   );
 }

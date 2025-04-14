@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "@/lib/axios";
 import Header from "@/components/Header";
 import Container from "@/components/Container";
+import styles from "@/styles/Home.module.css";
 
 export default function Home() {
   const [movies, setMovies] = useState([]);
@@ -23,7 +24,7 @@ export default function Home() {
       <Header />
       <Container page>
         <SearchForm />
-        <MovieList movies={movies} />
+        <MovieList className={styles.movieList} movies={movies} />
       </Container>
     </>
   );
