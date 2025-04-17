@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import MovieList from "@/components/MovieList";
 import axios from "@/lib/axios";
 import styles from "@/styles/Search.module.css";
+import Head from "next/head";
 
 export default function Search() {
   const [movies, setMovies] = useState([]);
@@ -21,12 +22,15 @@ export default function Search() {
   }, [q]);
 
   return (
-    <div>
+    <>
+      <Head>
+        <title>{`${q} 검색 결과 - watchit`}</title>
+      </Head>
       <SearchForm initialValue={q} />
       <h2 className={styles.title}>
         <span className={styles.keyword}>{q}</span> 검색 결과
       </h2>
       <MovieList movies={movies} />
-    </div>
+    </>
   );
 }
